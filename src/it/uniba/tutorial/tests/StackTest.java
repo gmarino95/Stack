@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniba.tutorial.CollezioneVuotaException;
 import it.uniba.tutorial.NumeroNegativoException;
 import it.uniba.tutorial.Stack;
 
@@ -36,7 +37,7 @@ public class StackTest {
 	}
 	
 	@Test
-	public void testPop() throws NumeroNegativoException {
+	public void testPop() throws NumeroNegativoException, CollezioneVuotaException {
 		
 		//Act
 		stack.push(3);
@@ -49,7 +50,7 @@ public class StackTest {
 	}
 	
 	@Test 
-	public void testisEmpty() throws NumeroNegativoException {
+	public void testisEmpty() throws NumeroNegativoException, CollezioneVuotaException {
 		
 		//Act
 		stack.push(1);
@@ -61,7 +62,7 @@ public class StackTest {
 	}
 	
 	@Test
-	public void testpeek() throws NumeroNegativoException {
+	public void testpeek() throws NumeroNegativoException, CollezioneVuotaException {
 		
 		//Act
 		stack.push(5);
@@ -70,4 +71,16 @@ public class StackTest {
 		//Assert
 		assertEquals(5, stack.peek());
 	}
+	
+	@Test(expected = NumeroNegativoException.class)
+	public void testNumeroNegativoException() throws NumeroNegativoException {
+		stack.push(-1);
+	}
+	
+	@Test(expected = CollezioneVuotaException.class)
+	public void testCollezioneVuotaException() throws CollezioneVuotaException {
+		stack.pop();
+	}
+	
+	//@Test()
 }
